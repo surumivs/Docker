@@ -1,31 +1,50 @@
 Docker Containerization for Django
+******
 
 Docker installation on the server:
-sudo apt update
-sudo apt install docker.io -y
-sudo systemctl status docker
-sudo systemctl start docker
+
+•	sudo apt update
+
+•	sudo apt install docker.io -y
+
+•	sudo systemctl status docker
+
+•	sudo systemctl start docker
+
 
 ![image](https://github.com/surumivs/Docker/assets/170710844/1cff2ab4-d098-40f8-b6f3-08d35c0306bc)
 
- 
-Grant Access to your user to run docker commands
-sudo usermod -aG docker ubuntu
-docker run hello-world (verify)
-Clone this repository and move to example folder
+Grant Access to your user to run docker commands:
+
+• usermod -aG docker ubuntu
+
+• docker run hello-world (verify)
+
+Clone this repository and move it to the example folder
+
 git clone https://github.com/surumivs/Docker.git
 
  ![image](https://github.com/surumivs/Docker/assets/170710844/e7a9a36f-f93e-490f-8807-5a5c55cf900f)
 
-cd /Docker-Zero-to-Hero/examples/python-web-app/devops/
+• cd /Docker/examples/python-web-app/devops/
+
 1.	Install Django-admin will create skeleton files and folders
-django-admin startproject devops(creating db.sqlite3, devops, manage.py)
-2.	Install application with the below command
-Python manage.py startapp demo(created demo folder)
+   
+• django-admin startproject devops(creating db.sqlite3, devops, manage.py)
+
+2.	Install the application with the below command
+
+• Python manage.py startapp demo(created demo folder)
+
 cd demo
+
 mkdir templates
+
 vi demo_site.html(Create app page)
-3.	Create Dockerfile on /Docker-Zero-to-Hero/examples/python-web-app/
+
+3.	Create a Dockerfile on /Docker/examples/python-web-app/
+   
+***
 FROM ubuntu
 
 WORKDIR /app
@@ -43,6 +62,7 @@ ENV PATH="/app/venv/bin:$PATH"
 
 ENTRYPOINT ["python3"]
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
+***
 
 4.	Create requirements.txt there
 Django
@@ -52,9 +72,13 @@ Tzdata
 
  
 Login to Docker [Create an account with https://hub.docker.com/]
+
 docker login
+
 docker build .
+
 docker images
+
 docker run -p 8000:8000 -it <image-id>
 
 
